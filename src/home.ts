@@ -14,10 +14,12 @@ export default function(req: any, router: any) {
     const handle = document.createElement('input');
     handle.id = 'handle';
     handle.placeholder = 'Handle/E-mail';
+    handle.autocapitalize = 'off';
     const password = document.createElement('input');
     password.id = 'password';
     password.placeholder = 'App Password';
     password.type = 'password';
+    password.autocapitalize = 'off';
     const login = document.createElement('button');
     login.innerText = "Login"
 

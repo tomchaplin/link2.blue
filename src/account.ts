@@ -104,12 +104,14 @@ export default function(req: any, router: any) {
 
     const input_key = document.createElement('input');
     input_key.setAttribute('form', 'new_link');
+    input_key.autocapitalize = 'off';
     input_key.placeholder = '🔑 your_key';
     const key_td = document.createElement('td');
     key_td.appendChild(input_key);
 
     const input_link = document.createElement('input');
     input_link.setAttribute('form', 'new_link');
+    input_link.autocapitalize = 'off';
     input_link.placeholder = '🔗 https://www.example.com';
     const link_td = document.createElement('td');
     link_td.appendChild(input_link);
