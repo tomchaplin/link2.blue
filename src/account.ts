@@ -152,11 +152,6 @@ export default function(req: any, router: any) {
 
   function buildRecordTable(records) {
     const table = document.createElement('table');
-    //const header = document.createElement('tr');
-    //header.appendChild(createTableCell('th', 'Key'));
-    //header.appendChild(createTableCell('th', 'Link'));
-    //header.appendChild(createTableCell('th', 'Actions'));
-    //table.appendChild(header);
     for (let row of records) {
       table.appendChild(createRecordRow(row));
     }
