@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build_no_check": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -13,6 +14,7 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
-    "@atproto/api": "^0.13.19"
+    "@atproto/api": "^0.13.19",
+    "@kodnificent/sparouter": "^1.1.0"
   }
 }
