@@ -36,19 +36,22 @@ export default function(req: any, router: any) {
     return th
   }
 
+  function getLink2URL(key) {
+    return `https://link2.blue/${agent.session.handle}/${key}`
+  }
 
   function getQrCodeLink(key) {
     const url = new URL("https://api.qrserver.com/v1/create-qr-code/");
     url.searchParams.append('size', '300x300');
-    url.searchParams.append('data', `https://link2.blue/${agent.session.handle}/${key}`);
+    url.searchParams.append('data', getLink2URL(key));
     return url.href
   }
-  
+
   // TODO: Add link to QR code
   function createRecordRow(row) {
     const row_tr = document.createElement('tr');
-    row_tr.appendChild(createTableCell('td', '🔑 '+row[0]))
-    row_tr.appendChild(createTableCell('td', '🔗 '+row[1]))
+    row_tr.appendChild(createTableCell('td', '🔑 ' + row[0]))
+    row_tr.appendChild(createTableCell('td', '🔗 ' + row[1]))
 
     const delete_button = document.createElement('button');
     delete_button.innerText = '🗑️';
@@ -74,11 +77,18 @@ export default function(req: any, router: any) {
       window.location = getQrCodeLink(row[0])
     }
 
+    const copy_button = document.createElement('button');
+    copy_button.innerText = '📋';
+    copy_button.onclick = async (e) => {
+      navigator.clipboard.writeText(getLink2URL(row[0]))
+    }
+
     const button_td = document.createElement('td');
-    button_td.className='button_holder';
+    button_td.className = 'button_holder';
     button_td.appendChild(delete_button);
     button_td.appendChild(test_button);
     button_td.appendChild(qr_button);
+    button_td.appendChild(copy_button);
 
     row_tr.appendChild(button_td);
     return row_tr
@@ -108,7 +118,7 @@ export default function(req: any, router: any) {
     button.innerText = 'Add'
     button.setAttribute('form', 'new_link');
     const button_td = document.createElement('td');
-    button_td.className='button_holder';
+    button_td.className = 'button_holder';
     button_td.appendChild(button);
 
     form.onsubmit = async (e) => {
