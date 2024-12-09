@@ -60,8 +60,27 @@ export default function(req: any, router: any) {
   // TODO: Add link to QR code
   function createRecordRow(row) {
     const row_tr = document.createElement('tr');
-    row_tr.appendChild(createTableCell('td', '🔑 ' + row[0]))
-    row_tr.appendChild(createTableCell('td', '🔗 ' + row[1]))
+
+    const key_td = document.createElement('td');
+    key_td.className = 'flex_td'
+    const key_emoji = document.createElement('span');
+    key_emoji.innerText ='🔑' 
+    const key_text = document.createElement('span');
+    key_text.innerText = row[0];
+    key_td.appendChild(key_emoji);
+    key_td.appendChild(key_text);
+    row_tr.appendChild(key_td);
+
+    const link_td = document.createElement('td');
+    link_td.className = 'flex_td';
+    const link_emoji = document.createElement('span');
+    link_emoji.innerText ='🔗' 
+    const link_a = document.createElement('a');
+    link_a.href = row[1]
+    link_a.innerText = row[1];
+    link_td.appendChild(link_emoji);
+    link_td.appendChild(link_a);
+    row_tr.appendChild(link_td);
 
     const delete_button = document.createElement('button');
     delete_button.innerText = '🗑️';
@@ -163,6 +182,7 @@ export default function(req: any, router: any) {
   function setupLoggedInMessage() {
     const message = document.createElement('p');
     message.innerText = 'Logged into ' + agent.session.handle;
+    message.className = 'centered';
     output.appendChild(message);
   }
 
@@ -174,6 +194,7 @@ export default function(req: any, router: any) {
 
   function setupLogout() {
     const p = document.createElement('p');
+    p.className='centered';
     const logout_button = document.createElement('button');
     logout_button.innerText = 'Logout';
     logout_button.onclick = async (e) => {
