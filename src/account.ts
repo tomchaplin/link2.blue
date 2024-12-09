@@ -5,6 +5,15 @@ enum AccountError {
   ListError
 }
 
+function buildLinkButton(text, link) {
+  const a = document.createElement('a');
+  a.href = link;
+  const button = document.createElement('button');
+  button.innerText = text;
+  a.appendChild(button);
+  return a;
+}
+
 export default function(req: any, router: any) {
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
   output.innerHTML = '';
@@ -66,17 +75,8 @@ export default function(req: any, router: any) {
       location.reload();
     }
 
-    const test_button = document.createElement('button');
-    test_button.innerText = '↗';
-    test_button.onclick = async (e) => {
-      router.goTo(`/${agent.session.handle}/${row[0]}`)
-    }
-
-    const qr_button = document.createElement('button');
-    qr_button.innerText = 'QR';
-    qr_button.onclick = async (e) => {
-      window.location = getQrCodeLink(row[0])
-    }
+    const test_button = buildLinkButton('↗',`/${agent.session.handle}/${row[0]}`)
+    const qr_button = buildLinkButton('QR', getQrCodeLink(row[0]))
 
     const copy_button = document.createElement('button');
     copy_button.innerText = '📋';
