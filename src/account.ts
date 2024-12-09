@@ -42,8 +42,9 @@ export default function(req: any, router: any) {
 
   function getQrCodeLink(key) {
     const url = new URL("https://api.qrserver.com/v1/create-qr-code/");
-    url.searchParams.append('size', '300x300');
+    url.searchParams.append('size', '500x500');
     url.searchParams.append('data', getLink2URL(key));
+    url.searchParams.append('format', 'svg');
     return url.href
   }
 
