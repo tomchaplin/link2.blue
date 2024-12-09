@@ -1,8 +1,8 @@
 import { agent } from './common';
 
-export default function(req:any, router:any) {
+export default function(req: any, router: any) {
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
-  output.innerHTML=''
+  output.innerHTML = ''
 
   function goToAccount() {
     router.goTo(agent.session.handle)
@@ -29,7 +29,7 @@ export default function(req:any, router:any) {
           password: password.value
         })
         goToAccount();
-      } catch(error) {
+      } catch (error) {
         console.error(error)
       }
     }
@@ -39,7 +39,7 @@ export default function(req:any, router:any) {
     form.appendChild(login);
     output.appendChild(form);
   }
-  
+
   async function main() {
     const saved_session = window.localStorage.getItem('session');
     if (saved_session) {
@@ -49,8 +49,8 @@ export default function(req:any, router:any) {
       setupLogin();
     }
   }
-  
-  
+
+
   console.log('Home page');
   main();
 }

@@ -2,30 +2,30 @@
 import { agent } from './common'
 
 enum RedirectError {
-  NoRecord=0,
-  InvalidLink=1
+  NoRecord = 0,
+  InvalidLink = 1
 }
 
 function error_string(error: RedirectError): string {
   const key = window.location.pathname.substring(1);
   if (error == RedirectError.NoRecord) {
-    return "No record stored at "+key
+    return "No record stored at " + key
   } else {
-    return "Link stored at "+key+" is an invalid URL!"
+    return "Link stored at " + key + " is an invalid URL!"
   }
 }
 
 
-export default function(req:any, _router:any) {
+export default function(req: any, _router: any) {
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
-  output.innerHTML=''
+  output.innerHTML = ''
 
   const handle = req.param.handle;
   const rkey = req.param.rkey;
   const link_key = handle + "/" + rkey;
   //const agent = new AtpAgent({service: 'https://bsky.social'});
 
-  async function getLink() : Promise<URL> {
+  async function getLink(): Promise<URL> {
     let link;
     try {
 
@@ -57,7 +57,7 @@ export default function(req:any, _router:any) {
       setTimeout(() => {
         window.location = link;
       }, 1000);
-      
+
     } catch (error: any) {
       output.innerText = error_string(error);
     }

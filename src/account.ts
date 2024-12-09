@@ -5,7 +5,7 @@ enum AccountError {
   ListError
 }
 
-export default function(req:any, router:any) {
+export default function(req: any, router: any) {
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
   output.innerHTML = '';
 
@@ -63,7 +63,7 @@ export default function(req:any, router:any) {
     const button_td = document.createElement('td');
     button_td.appendChild(delete_button);
     button_td.appendChild(test_button);
-    
+
     row_tr.appendChild(button_td);
     return row_tr
   }
@@ -72,10 +72,10 @@ export default function(req:any, router:any) {
     const form = document.createElement('form');
     form.id = "new_link"
 
-    
+
     const row_tr = document.createElement('tr');
 
-    const input_key =document.createElement('input');
+    const input_key = document.createElement('input');
     input_key.setAttribute('form', 'new_link');
     const key_td = document.createElement('td');
     key_td.appendChild(input_key);
@@ -86,7 +86,7 @@ export default function(req:any, router:any) {
     link_td.appendChild(input_link);
 
     const button = document.createElement('button');
-    button.innerText='Add'
+    button.innerText = 'Add'
     button.setAttribute('form', 'new_link');
     const button_td = document.createElement('td');
     button_td.appendChild(button);
@@ -112,14 +112,14 @@ export default function(req:any, router:any) {
     row_tr.appendChild(key_td);
     row_tr.appendChild(link_td);
     row_tr.appendChild(button_td);
-   
+
     return row_tr
-    
+
   }
 
   function buildRecordTable(records) {
     const table = document.createElement('table');
-    const header =document.createElement('tr');
+    const header = document.createElement('tr');
     header.appendChild(createTableCell('th', 'Key'));
     header.appendChild(createTableCell('th', 'Link'));
     header.appendChild(createTableCell('th', 'Actions'));
@@ -129,12 +129,12 @@ export default function(req:any, router:any) {
     }
     table.appendChild(createNewRow());
     return table
-    
+
   }
 
   function setupLoggedInMessage() {
     const message = document.createElement('p');
-    message.innerText = 'Logged into '+agent.session.handle;
+    message.innerText = 'Logged into ' + agent.session.handle;
     output.appendChild(message);
   }
 
@@ -146,11 +146,11 @@ export default function(req:any, router:any) {
 
   function setupLogout() {
     const logout_button = document.createElement('button');
-    logout_button.innerText='Logout';
+    logout_button.innerText = 'Logout';
     logout_button.onclick = async (e) => {
       e.preventDefault();
       await logout();
-    } 
+    }
     output.appendChild(logout_button);
   }
 
@@ -172,7 +172,7 @@ export default function(req:any, router:any) {
       router.goTo('/');
       return
     }
-  
+
     // Display page
     try {
       setupLoggedInMessage();
