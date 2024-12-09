@@ -75,7 +75,7 @@ export default function(req: any, router: any) {
       location.reload();
     }
 
-    const test_button = buildLinkButton('↗',`/${agent.session.handle}/${row[0]}`)
+    const test_button = buildLinkButton('↗', `/${agent.session.handle}/${row[0]}`)
     const qr_button = buildLinkButton('QR', getQrCodeLink(row[0]))
 
     const copy_button = document.createElement('button');
@@ -178,13 +178,15 @@ export default function(req: any, router: any) {
   }
 
   function setupLogout() {
+    const p = document.createElement('p');
     const logout_button = document.createElement('button');
     logout_button.innerText = 'Logout';
     logout_button.onclick = async (e) => {
       e.preventDefault();
       await logout();
     }
-    output.appendChild(logout_button);
+    p.appendChild(logout_button);
+    output.appendChild(p);
   }
 
   async function main() {
