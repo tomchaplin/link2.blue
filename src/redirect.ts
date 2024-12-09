@@ -1,5 +1,3 @@
-// TODO: Switch over entire app?
-// Use atcute client because its lightweight
 import { XRPC, CredentialManager } from '@atcute/client';
 
 const manager = new CredentialManager({ service: 'https://bsky.social' });
@@ -10,16 +8,6 @@ enum RedirectError {
   NoRecord = 0,
   InvalidLink = 1
 }
-
-function error_string(error: RedirectError): string {
-  const key = window.location.pathname.substring(1);
-  if (error == mailRedirectError.NoRecord) {
-    return "No record stored at " + key
-  } else {
-    return "Link stored at " + key + " is an invalid URL!"
-  }
-}
-
 
 export default function(req: any, _router: any) {
   const output = document.querySelector<HTMLParagraphElement>('#output')!;

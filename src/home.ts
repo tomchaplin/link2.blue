@@ -1,5 +1,6 @@
+import agent from './agent';
+
 export default function(req: any, router: any) {
-  let agent;
   
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
   output.innerHTML = ''
@@ -49,8 +50,6 @@ export default function(req: any, router: any) {
   }
 
   async function main() {
-    const agent_func = await import('./agent');
-    agent = agent_func.default();
     const saved_session = window.localStorage.getItem('session');
     if (saved_session && agent.resumeSession) {
       await agent.resumeSession(JSON.parse(saved_session));

@@ -1,4 +1,4 @@
-import agent from './agent'
+import agent from './agent';
 
 enum AccountError {
   ResolveError,
@@ -15,7 +15,6 @@ function buildLinkButton(text, link) {
 }
 
 export default function(req: any, router: any) {
-  let agent;
   const output = document.querySelector<HTMLParagraphElement>('#output')!;
   output.innerHTML = '';
 
@@ -207,9 +206,6 @@ export default function(req: any, router: any) {
   }
 
   async function main() {
-
-    const agent_func = await import('./agent');
-    agent = agent_func.default();
 
     // Check we are logged into the correct account
     const saved_session = window.localStorage.getItem('session');

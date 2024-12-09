@@ -11,8 +11,31 @@ const options = {
 }
 const router = new SPARouter(options);
 
-router.get("/", home).setName("home");
-router.get("/{handle}", account).setName("account");
-router.get("/{handle}/{rkey}", redirect).setName("redirect");
+// We do all this weirdness to allow code-splitting at the route level.
+// We use @atcute/client on the redirect route to reduce bundle size there.
+// TODO: Maybe swap to @atcute/client on home and account?
+
+router.get("/", (req, router) => {
+  (async function() {
+    const module = await import('./home');
+    module.default(req, router)
+  })()
+}).setName("home");
+router.get("/{handle}",
+  (req, router) => {
+    (async function() {
+      const module = await import('./account');
+      module.default(req, router)
+    })()
+  }
+).setName("account");
+router.get("/{handle}/{rkey}",
+  (req, router) => {
+    (async function() {
+      const module = await import('./redirect');
+      module.default(req, router)
+    })()
+  }
+).setName("redirect");
 
 export default router;
