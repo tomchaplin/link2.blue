@@ -36,14 +36,22 @@ export default function(req: any, router: any) {
     return th
   }
 
+
+  function getQrCodeLink(key) {
+    const url = new URL("https://api.qrserver.com/v1/create-qr-code/");
+    url.searchParams.append('size', '300x300');
+    url.searchParams.append('data', `https://link2.blue/${agent.session.handle}/${key}`);
+    return url.href
+  }
+  
   // TODO: Add link to QR code
   function createRecordRow(row) {
     const row_tr = document.createElement('tr');
-    row_tr.appendChild(createTableCell('td', row[0]))
-    row_tr.appendChild(createTableCell('td', row[1]))
+    row_tr.appendChild(createTableCell('td', '🔑 '+row[0]))
+    row_tr.appendChild(createTableCell('td', '🔗 '+row[1]))
 
     const delete_button = document.createElement('button');
-    delete_button.innerText = 'Delete';
+    delete_button.innerText = '🗑️';
     delete_button.onclick = async (e) => {
       e.preventDefault();
       await agent.com.atproto.repo.deleteRecord({
@@ -55,14 +63,22 @@ export default function(req: any, router: any) {
     }
 
     const test_button = document.createElement('button');
-    test_button.innerText = 'Test';
+    test_button.innerText = '↗';
     test_button.onclick = async (e) => {
       router.goTo(`/${agent.session.handle}/${row[0]}`)
     }
 
+    const qr_button = document.createElement('button');
+    qr_button.innerText = 'QR';
+    qr_button.onclick = async (e) => {
+      window.location = getQrCodeLink(row[0])
+    }
+
     const button_td = document.createElement('td');
+    button_td.className='button_holder';
     button_td.appendChild(delete_button);
     button_td.appendChild(test_button);
+    button_td.appendChild(qr_button);
 
     row_tr.appendChild(button_td);
     return row_tr
@@ -74,14 +90,17 @@ export default function(req: any, router: any) {
 
 
     const row_tr = document.createElement('tr');
+    row_tr.className = 'input_row';
 
     const input_key = document.createElement('input');
     input_key.setAttribute('form', 'new_link');
+    input_key.placeholder = '🔑 your_key';
     const key_td = document.createElement('td');
     key_td.appendChild(input_key);
 
     const input_link = document.createElement('input');
     input_link.setAttribute('form', 'new_link');
+    input_link.placeholder = '🔗 https://www.example.com';
     const link_td = document.createElement('td');
     link_td.appendChild(input_link);
 
@@ -89,6 +108,7 @@ export default function(req: any, router: any) {
     button.innerText = 'Add'
     button.setAttribute('form', 'new_link');
     const button_td = document.createElement('td');
+    button_td.className='button_holder';
     button_td.appendChild(button);
 
     form.onsubmit = async (e) => {
@@ -119,11 +139,11 @@ export default function(req: any, router: any) {
 
   function buildRecordTable(records) {
     const table = document.createElement('table');
-    const header = document.createElement('tr');
-    header.appendChild(createTableCell('th', 'Key'));
-    header.appendChild(createTableCell('th', 'Link'));
-    header.appendChild(createTableCell('th', 'Actions'));
-    table.appendChild(header);
+    //const header = document.createElement('tr');
+    //header.appendChild(createTableCell('th', 'Key'));
+    //header.appendChild(createTableCell('th', 'Link'));
+    //header.appendChild(createTableCell('th', 'Actions'));
+    //table.appendChild(header);
     for (let row of records) {
       table.appendChild(createRecordRow(row));
     }
