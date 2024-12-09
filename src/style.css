@@ -141,21 +141,13 @@ p.follow {
   font-size: 0.8rem;
 }
 
-.redirect {
+.redirect{
   margin: 20px 0 40px 0;
-  
-}
-
-.redirect.no_error {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-}
-
-.redirect.error_msg {
-  line-height: 2.2;
 }
 
 .redirect .with_border {
@@ -165,5 +157,4 @@ p.follow {
   border-radius: 10px;
   gap: 5px;
   word-break: break-all;
-  
 }

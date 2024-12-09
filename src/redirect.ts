@@ -60,7 +60,6 @@ export default function(req: any, _router: any) {
   function showSuccess(key, href) {
     const message = document.createElement('div');
     message.classList.add('redirect');
-    message.classList.add('no_error');
 
     const key_span = build_key_span(key);
     message.appendChild(key_span);
