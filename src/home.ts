@@ -21,6 +21,10 @@ export default function(req: any, router: any) {
     const login = document.createElement('button');
     login.innerText = "Login"
 
+    const error_msg = document.createElement('p');
+    error_msg.className = 'error_msg'
+
+
     form.onsubmit = async (e) => {
       e.preventDefault();
       try {
@@ -30,6 +34,7 @@ export default function(req: any, router: any) {
         })
         goToAccount();
       } catch (error) {
+        error_msg.innerText = error.message;
         console.error(error)
       }
     }
@@ -37,6 +42,7 @@ export default function(req: any, router: any) {
     form.appendChild(handle);
     form.appendChild(password);
     form.appendChild(login);
+    form.appendChild(error_msg);
     output.appendChild(form);
   }
 

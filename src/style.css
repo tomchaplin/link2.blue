@@ -40,6 +40,10 @@ p {
   text-align: left;
 }
 
+p.error_msg {
+  color: #e85635;
+}
+
 #app {
   max-width: 90vw;
   margin: 0 auto;
