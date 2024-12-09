@@ -107,6 +107,11 @@ button {
   cursor: pointer;
 }
 
+p.follow {
+  text-align: center;
+  font-size: 0.8rem;
+}
+
 
 /*
 @media (prefers-color-scheme: light) {
