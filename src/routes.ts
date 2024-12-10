@@ -1,11 +1,6 @@
 // @ts-nocheck
 import SPARouter from "@kodnificent/sparouter"; // if you are hosting locally
 
-
-import home from './home';
-import account from './account';
-import redirect from "./redirect";
-
 const options = {
   historyMode: true // set this to true if you use the HTML5 history mode API
 }
