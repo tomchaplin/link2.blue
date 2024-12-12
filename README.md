@@ -29,3 +29,8 @@ Including:
 3. Creating QR codes (via [qoqr.me](https://goqr.me/api/))
 
 Try it out now by visiting [`link2.blue`](https://link2.blue) and logging in with your Bluesky account (ideally with an app password).
+
+## Related work
+
+You should also checkout [`linkat.blue`](https://linkat.blue/) which is a [`lnk.bio`](https://lnk.bio/) alternative that uses a similar approach to [`link2.blue`].
+This service is more focused on fast redirects rather than listing "public bookmarks" but the two services could no doubt be integrated.
