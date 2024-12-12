@@ -32,5 +32,5 @@ Try it out now by visiting [`link2.blue`](https://link2.blue) and logging in wit
 
 ## Related work
 
-You should also checkout [`linkat.blue`](https://linkat.blue/) which is a [`lnk.bio`](https://lnk.bio/) alternative that uses a similar approach to [`link2.blue`].
-This service is more focused on fast redirects rather than listing "public bookmarks" but the two services could no doubt be integrated.
+You should also checkout [`linkat.blue`](https://linkat.blue/) which is a [`lnk.bio`](https://lnk.bio/) alternative that uses a similar approach to [`link2.blue`](https://link2.blue).
+Our service is more focused on fast redirects rather than listing "public bookmarks" but the two services could no doubt be integrated.
